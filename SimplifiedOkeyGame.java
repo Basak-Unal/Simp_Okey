@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class SimplifiedOkeyGame {
 
     Player[] players;
@@ -26,14 +28,14 @@ public class SimplifiedOkeyGame {
         tileCount = 104;
     }
 
-    /*
+    /*Başak
      * TODO: distributes the starting tiles to the players
      * player at index 0 gets 15 tiles and starts first
      * other players get 14 tiles, this method assumes the tiles are already shuffled
      */
     public void distributeTilesToPlayers() {
-
-    }
+        
+    }   
 
     /*
      * TODO: get the last discarded tile for the current player
@@ -54,11 +56,22 @@ public class SimplifiedOkeyGame {
         return null;
     }
 
-    /*
+    /*Başak
      * TODO: should randomly shuffle the tiles array before game starts
      */
     public void shuffleTiles() {
+        ArrayList<Tile> shuffleTemp  = new ArrayList<>();
+        for(int i = 0; i < tiles.length; i++)
+        {
+            shuffleTemp.add(tiles[i]);
+        }
 
+        for(int i = 0; i < shuffleTemp.size(); i++)
+        {
+            int randomShuffle = (int)(Math.random() * shuffleTemp.size());
+            tiles[i] = shuffleTemp.get(randomShuffle);
+            shuffleTemp.remove(randomShuffle);
+        }
     }
 
     /*
