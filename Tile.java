@@ -33,12 +33,14 @@ public class Tile {
     }
 
     /*
+     * simay
      * TODO: should determine if this tile and given tile can form a chain together
      * this method should check the difference in values of the two tiles
      * should return true if the absoulute value of the difference is 1 (they can form a chain)
      * otherwise, it should return false (they cannot form a chain)
      */
     public boolean canFormChainWith(Tile t) {
+        if (Math.abs(t.getValue() - this.value) == 1) {return true;}
         return false;
     }
 
