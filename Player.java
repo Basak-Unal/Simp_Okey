@@ -1,3 +1,4 @@
+
 public class Player {
     String playerName;
     Tile[] playerTiles;
@@ -35,8 +36,14 @@ public class Player {
     /*
      * TODO: removes and returns the tile in given index position
      */
-    public Tile getAndRemoveTile(int index) {
-        return null;
+    public Tile getAndRemoveTile(int index) {//Removes the tile, shifts the othr tiles and returns the tile( index should be checked )Berra
+        Tile tileToBeRemoved=this.playerTiles[index];
+        for(int i = index+1; i <numberOfTiles; i++){
+            this.playerTiles[i - 1] = this.playerTiles[ index ];
+        }
+        this.numberOfTiles--;
+        return tileToBeRemoved;
+        // Reminder: Main class should be updated to check the index
     }
 
     /*
@@ -44,8 +51,9 @@ public class Player {
      * this requires you to loop over the existing tiles to find the correct position,
      * then shift the remaining tiles to the right by one
      */
-    public void addTile(Tile t) {
-
+    public void addTile(Tile t) {// This method adds tile to the tile array by using Binary Insertion sort,Berra
+        insertByUsingBinarySearch(t, playerTiles, 0, numberOfTiles);
+        this.numberOfTiles++;
     }
 
     /*
@@ -83,4 +91,26 @@ public class Player {
     public String getName() {
         return playerName;
     }
-}
+    public void insertByUsingBinarySearch(Tile t, Tile[] playerTiles, int right, int left){// This method uses binary search to keep the tile array in ascending order, Berra
+        int middle = (right + left) / 2;
+        Tile middleTile = this.playerTiles[ middle ];
+        if(right == left){
+            for(int i = middle + 1; i <= this.numberOfTiles ; i++){
+                this.playerTiles[i] = this.playerTiles[i - 1];
+            }
+            this.playerTiles[middle]=t;
+        }
+        while(right<left){
+            if(t.compareTo(middleTile) == 1 || t.compareTo(middleTile) == 0){
+                right = middle+1;
+                left = left;
+            }
+            else{
+                left = middle-1;
+                right = right;
+            }
+            this.insertByUsingBinarySearch(t, this.playerTiles, right, left);
+        }
+    }
+    //Note since the main class is not complete yet, I cannot test if this method is working properly or not
+}   //I will check it later, if you think there is problem, I would appreciate that if you fix it
