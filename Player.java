@@ -11,6 +11,7 @@ public class Player {
     }
 
     /*
+     * -Bera
      * TODO: checks this player's hand to determine if this player is winning
      * the player with a complete chain of 14 consecutive numbers wins the game
      * note that the player whose turn is now draws one extra tile to have 15 tiles in hand,
@@ -18,6 +19,33 @@ public class Player {
      * check the assigment text for more details on winning condition
      */
     public boolean checkWinning() {
+        final int TILES_LENGTH = playerTiles.length;
+        int longestLength = 0;
+        int currentLength = 0;
+        Tile currTile;
+        Tile nextTile;
+
+        for (int i = 0; i < TILES_LENGTH - 1; i++) {
+            currTile = playerTiles[i];
+            nextTile = playerTiles [i+1];
+
+            if () {
+                //they are consecutive
+            }
+            else if () {
+                //they are the same, ignore the duplicate
+            }
+            else {
+                //series end here
+
+                //check if it's the longest
+
+                //start a new serie
+            }
+
+
+            
+        }
         return false;
     }
 
