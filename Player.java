@@ -34,7 +34,7 @@ public class Player {
             if (currTile.canFormChainWith(nextTile)) {
                 //they are consecutive
                 currentLength++;
-                System.out.println(i + " = i ---consecutive, currlenght = " + currentLength);
+        //        System.out.println(i + " = i ---consecutive, currlenght = " + currentLength);
             }
             else if (currTile.matchingTiles(nextTile)) {
                 //they are the same, ignore the duplicate
