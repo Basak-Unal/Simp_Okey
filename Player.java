@@ -60,6 +60,7 @@ public class Player {
     }
 
     /*
+     * -bera
      * TODO: used for finding the longest chain in this player hand
      * this method should iterate over playerTiles to find the longest chain
      * of consecutive numbers, used for checking the winning condition
