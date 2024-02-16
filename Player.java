@@ -11,7 +11,7 @@ public class Player {
     }
 
     /*
-     * -Bera
+     * -bera
      * TODO: checks this player's hand to determine if this player is winning
      * the player with a complete chain of 14 consecutive numbers wins the game
      * note that the player whose turn is now draws one extra tile to have 15 tiles in hand,
@@ -19,39 +19,10 @@ public class Player {
      * check the assigment text for more details on winning condition
      */
     public boolean checkWinning() {
-        final int TILES_LENGTH = playerTiles.length;
-        int longestLength = 1;
-        int currentLength = 1;
-        Tile currTile;
-        Tile nextTile;
+        
+        int longestLength = this.findLongestChain();
 
-        for (int i = 0; i < TILES_LENGTH - 1; i++) {
-            currTile = playerTiles[i];
-            nextTile = playerTiles [i+1];
-
-        //    System.out.println("inside the method >> i:" + i);
-
-            if (currTile.canFormChainWith(nextTile)) {
-                //they are consecutive
-                currentLength++;
-        //        System.out.println(i + " = i ---consecutive, currlenght = " + currentLength);
-            }
-            else if (currTile.matchingTiles(nextTile)) {
-                //they are the same, ignore the duplicate
-            }
-            else {
-                //the serie ends here
-                //check if it's the longest
-                longestLength = Math.max(currentLength, longestLength);
-
-                //start a new serie
-                currentLength = 1;
-            }
-        }
-
-        longestLength = Math.max(longestLength, currentLength);
-
-        //System.out.println("longest length is " + longestLength);
+//        System.out.println("longest length is " + longestLength);
 
         if (longestLength >= 14) {
             return true;
@@ -67,7 +38,38 @@ public class Player {
      * and also for determining the winner if tile stack has no tiles
      */
     public int findLongestChain() {
-        int longestChain = 0;
+        final int TILES_LENGTH = playerTiles.length;
+        int longestChain = 1;
+        int currentChain = 1;
+        Tile currTile;
+        Tile nextTile;
+        
+        for (int i = 0; i < TILES_LENGTH - 1; i++) {
+            currTile = playerTiles[i];
+            nextTile = playerTiles [i+1];
+
+//            System.out.println("inside the method >> i:" + i);
+
+            if (currTile.canFormChainWith(nextTile)) {
+                //they are consecutive
+                currentChain++;
+//                System.out.println(i + " = i ---consecutive, currlenght = " + currentLength);
+            }
+            else if (currTile.matchingTiles(nextTile)) {
+                //they are the same, ignore the duplicate
+            }
+            else {
+                //the serie ends here
+                //check if it's the longest
+                longestChain = Math.max(currentChain, longestChain);
+
+                //start a new serie
+                currentChain = 1;
+            }
+        }
+
+        longestChain = Math.max(longestChain, currentChain);
+//        System.out.println(longestChain);
 
         return longestChain;
     }
