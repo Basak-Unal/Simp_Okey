@@ -20,8 +20,8 @@ public class Player {
      */
     public boolean checkWinning() {
         final int TILES_LENGTH = playerTiles.length;
-        int longestLength = 0;
-        int currentLength = 0;
+        int longestLength = 1;
+        int currentLength = 1;
         Tile currTile;
         Tile nextTile;
 
@@ -29,22 +29,32 @@ public class Player {
             currTile = playerTiles[i];
             nextTile = playerTiles [i+1];
 
-            if () {
+        //    System.out.println("inside the method >> i:" + i);
+
+            if (currTile.canFormChainWith(nextTile)) {
                 //they are consecutive
+                currentLength++;
+                System.out.println(i + " = i ---consecutive, currlenght = " + currentLength);
             }
-            else if () {
+            else if (currTile.matchingTiles(nextTile)) {
                 //they are the same, ignore the duplicate
             }
             else {
-                //series end here
-
+                //the serie ends here
                 //check if it's the longest
+                longestLength = Math.max(currentLength, longestLength);
 
                 //start a new serie
+                currentLength = 1;
             }
+        }
 
+        longestLength = Math.max(longestLength, currentLength);
 
-            
+        //System.out.println("longest length is " + longestLength);
+
+        if (longestLength >= 14) {
+            return true;
         }
         return false;
     }
