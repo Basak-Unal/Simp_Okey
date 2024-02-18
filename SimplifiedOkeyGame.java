@@ -116,7 +116,7 @@ public class SimplifiedOkeyGame {
         return tileCount != 0;
     }
 
-    /*
+    /*feyza
      * TODO: pick a tile for the current computer player using one of the following:
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
@@ -124,7 +124,14 @@ public class SimplifiedOkeyGame {
      * by checking if it increases the longest chain length, if not get the top tile
      */
     public void pickTileForComputer() {
-
+    int previousLongestChainNumber=players[currentPlayerIndex].findLongestChain();
+     getLastDiscardedTile();
+      if(players[currentPlayerIndex].findLongestChain()==previousLongestChainNumber)//doesn't increase the longest chain length
+      {
+         int index=players[currentPlayerIndex].findPositionOfTile(lastDiscardedTile);
+         players[currentPlayerIndex].getAndRemoveTile(index);
+         getTopTile();
+      }
     }
 
     /*
