@@ -134,13 +134,20 @@ public class SimplifiedOkeyGame {
 
     }
 
-    /*
+    /*feyza
      * TODO: discards the current player's tile at given index
      * this should set lastDiscardedTile variable and remove that tile from
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
-
+    for(int i=0; i<players[currentPlayerIndex].getTiles().length; i++)
+    {
+        if(i==tileIndex)
+        {
+            lastDiscardedTile=players[currentPlayerIndex].getTiles()[i];
+        }
+    }
+    players[currentPlayerIndex].getAndRemoveTile(tileIndex);
     }
 
     public void displayDiscardInformation() {
