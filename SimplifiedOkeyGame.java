@@ -74,7 +74,7 @@ public class SimplifiedOkeyGame {
         }
     }
 
-    /*
+    /*feyza
      * TODO: check if game still continues, should return true if current player
      * finished the game. use checkWinning method of the player class to determine
      */
