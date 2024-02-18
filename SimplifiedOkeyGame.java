@@ -79,6 +79,9 @@ public class SimplifiedOkeyGame {
      * finished the game. use checkWinning method of the player class to determine
      */
     public boolean didGameFinish() {
+        if(players[currentPlayerIndex].checkWinning()){
+            return true;
+        }
         return false;
     }
 
