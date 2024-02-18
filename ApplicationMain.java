@@ -141,9 +141,33 @@ public class ApplicationMain {
                         System.out.println(game.getCurrentPlayerName() + " wins.");
                     }
                     else{
+                        //feyza
                         // TODO: the game ended with no more tiles in the stack
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
+                        if(game.getPlayerWithHighestLongestChain().length==1)
+                        {
+                            System.out.println(game.getPlayerWithHighestLongestChain()[0]+" is winner!");
+                        }
+                        else
+                        {
+                            for(int i=0;i<game.getPlayerWithHighestLongestChain().length;i++)
+                            {
+                              System.out.print(game.getPlayerWithHighestLongestChain()[i]);
+                               if(i!=game.getPlayerWithHighestLongestChain().length-1)
+                               {
+                                 if(i==game.getPlayerWithHighestLongestChain().length-2)
+                                 {
+                                    System.out.print(" and ");
+                                 }
+                                 else
+                                 {
+                                    System.out.print(" , ");
+                                 }
+                               }
+                            }
+                            System.out.print(" are winners!");
+                        }
                     }
                 }
             }
