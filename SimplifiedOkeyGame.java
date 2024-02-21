@@ -28,14 +28,26 @@ public class SimplifiedOkeyGame {
         tileCount = 104;
     }
 
-    /*Başak
+    /*Başak  This is somewhat code repetition idk how to do it easier without repeating code at this point
+
+    
      * TODO: distributes the starting tiles to the players
      * player at index 0 gets 15 tiles and starts first
      * other players get 14 tiles, this method assumes the tiles are already shuffled
      */
     public void distributeTilesToPlayers() {
         
-    }   
+        for(int i = 0; i < 4; i++)
+        {
+            for(int d = 0; d < 14; d++)
+            {
+                players[i].getTiles()[d] = tiles[tileCount - 1];
+                tileCount--;
+            }
+        }
+        players[0].getTiles()[14] = tiles[tileCount -1];
+        tileCount--;
+    }  
 
     /*feyza
      * TODO: get the last discarded tile for the current player
@@ -47,14 +59,14 @@ public class SimplifiedOkeyGame {
         return lastDiscardedTile.toString();
     }
 
-    /*
+    /*Başak
      * TODO: get the top tile from tiles array for the current player
      * that tile is no longer in the tiles array (this simulates picking up the top tile)
      * and it will be given to the current player
      * returns the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        return null;
+        return tiles[0].toString();
     }
 
     /*Başak
