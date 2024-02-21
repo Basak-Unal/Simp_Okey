@@ -59,14 +59,19 @@ public class SimplifiedOkeyGame {
         return lastDiscardedTile.toString();
     }
 
-    /*
+    /*berra
      * TODO: get the top tile from tiles array for the current player
      * that tile is no longer in the tiles array (this simulates picking up the top tile)
      * and it will be given to the current player
      * returns the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        return "?";
+        Tile topTile = tiles[tileCount - 1];
+        players[currentPlayerIndex].addTile(topTile);
+        String str = "";
+        str += topTile.toString();
+        tiles[tileCount -1] = null; // That tile is no longer in the tiles array ?
+        return str ;
     }
 
     /*Başak
