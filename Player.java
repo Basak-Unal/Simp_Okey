@@ -78,14 +78,15 @@ public class Player {
     /*
      * TODO: removes and returns the tile in given index position
      */
-    public Tile getAndRemoveTile(int index) {//Removes the tile, shifts the othr tiles and returns the tile( index should be checked )Berra
+     public Tile getAndRemoveTile(int index) {//Removes the tile, shifts the othr tiles and returns the tile( index should be checked )Berra
         Tile tileToBeRemoved=this.playerTiles[index];
-        for(int i = index+1; i <numberOfTiles; i++){
-            this.playerTiles[i - 1] = this.playerTiles[ i ];
+        for(int i = index; i<numberOfTiles-1; i++){
+            Tile preTile= new Tile(this.playerTiles[i+1].getValue());           
+            this.playerTiles[i] =preTile;
         }
+        this.playerTiles[14] = null;
         this.numberOfTiles--;
         return tileToBeRemoved;
-        System.out.println(Arrays.toString(this.getTiles()));
         // Reminder: Main class should be updated to check the index
     }
 
@@ -181,7 +182,6 @@ public class Player {
         for(int i = this.numberOfTiles; i>=index+1; i--){
             Tile preTile= new Tile(this.playerTiles[i - 1].getValue());           
             this.playerTiles[i] =preTile;
-            this.playerTiles[i].getValue();
         }
         this.playerTiles[index]=t;
     }
