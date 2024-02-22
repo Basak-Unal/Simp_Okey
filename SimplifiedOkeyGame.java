@@ -165,13 +165,7 @@ public class SimplifiedOkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
-    for(int i=0; i<players[currentPlayerIndex].getTiles().length; i++)
-    {
-        if(i==tileIndex)
-        {
-            lastDiscardedTile=players[currentPlayerIndex].getTiles()[i];
-        }
-    }
+    lastDiscardedTile=players[currentPlayerIndex].getTiles()[tileIndex];
     players[currentPlayerIndex].getAndRemoveTile(tileIndex);
     }
 
