@@ -39,13 +39,13 @@ public class SimplifiedOkeyGame {
         
         for(int i = 0; i < 4; i++)
         {
+            players[0].addTile(tiles[tileCount-1],0,players[0].numberOfTiles-1);
             for(int d = 0; d < 14; d++)
             {
-                players[i].getTiles()[d] = tiles[tileCount - 1];
+               players[i].addTile(tiles[tileCount-1],0,players[i].numberOfTiles-1);
                 tileCount--;
             }
         }
-        players[0].getTiles()[14] = tiles[tileCount -1];
         tileCount--;
     }  
 
@@ -84,7 +84,7 @@ public class SimplifiedOkeyGame {
             shuffleTemp.add(tiles[i]);
         }
 
-        for(int i = 0; i < shuffleTemp.size(); i++)
+        for(int i = 0; i < 104; i++)
         {
             int randomShuffle = (int)(Math.random() * shuffleTemp.size());
             tiles[i] = shuffleTemp.get(randomShuffle);
