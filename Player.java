@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Player {
     String playerName;
@@ -80,10 +81,11 @@ public class Player {
     public Tile getAndRemoveTile(int index) {//Removes the tile, shifts the othr tiles and returns the tile( index should be checked )Berra
         Tile tileToBeRemoved=this.playerTiles[index];
         for(int i = index+1; i <numberOfTiles; i++){
-            this.playerTiles[i - 1] = this.playerTiles[ index ];
+            this.playerTiles[i - 1] = this.playerTiles[ i ];
         }
         this.numberOfTiles--;
         return tileToBeRemoved;
+        System.out.println(Arrays.toString(this.getTiles()));
         // Reminder: Main class should be updated to check the index
     }
 
@@ -92,8 +94,8 @@ public class Player {
      * this requires you to loop over the existing tiles to find the correct position,
      * then shift the remaining tiles to the right by one
      */
-    public void addTile(Tile t) {// This method adds tile to the tile array by using Binary Insertion sort,Berra
-        insertByUsingBinarySearch(t, playerTiles, 0, numberOfTiles);
+    public void addTile(Tile t, int right, int left) {// This method adds tile to the tile array by using Binary Insertion sort,Berra
+        this.addTileAtIndex(t,findIndexByUsingBinarySearch(t, playerTiles, right, left) );
         this.numberOfTiles++;
     }
 
@@ -132,26 +134,55 @@ public class Player {
     public String getName() {
         return playerName;
     }
-    public void insertByUsingBinarySearch(Tile t, Tile[] playerTiles, int right, int left){// This method uses binary search to keep the tile array in ascending order, Berra
+    public int findIndexByUsingBinarySearch(Tile t, Tile[] playerTiles, int left, int right){// This method uses binary search to keep the tile array in ascending order, Berra
+        if(right<0){
+            return 0;
+        }
         int middle = (right + left) / 2;
         Tile middleTile = this.playerTiles[ middle ];
-        if(right == left){
-            for(int i = middle + 1; i <= this.numberOfTiles ; i++){
-                this.playerTiles[i] = this.playerTiles[i - 1];
-            }
-            this.playerTiles[middle]=t;
-        }
-        while(right<left){
+        while(right-left>=2 ){
+
             if(t.compareTo(middleTile) == 1 || t.compareTo(middleTile) == 0){
-                right = middle+1;
-                left = left;
+                left = middle;
+                right = right;
+               
             }
             else{
-                left = middle-1;
-                right = right;
+                right = middle;
+                left = left;
             }
-            this.insertByUsingBinarySearch(t, this.playerTiles, right, left);
+        
+            return this.findIndexByUsingBinarySearch(t, playerTiles, left, right);
         }
+ 
+         if(right-left==1){
+            int difference=t.compareTo(playerTiles[right]);
+            if(t.compareTo(playerTiles[right])==1 || t.compareTo(playerTiles[right])==0){
+                return right+1;
+            }
+            else if(t.compareTo(playerTiles[left])==1 || t.compareTo(playerTiles[left])==0){
+                return left+1;
+            }
+            return left;
+        }
+        
+        if(t.compareTo(playerTiles[middle])==1){
+            return middle+1;
+         }
+        return middle;
+        
+        
+    
     }
     //Note since the main class is not complete yet, I cannot test if this method is working properly or not
-}   //I will check it later, if you think there is problem, I would appreciate that if you fix it
+
+   //I will check it later, if you think there is problem, I would appreciate that if you fix it
+    public void addTileAtIndex(Tile t,int index){// The methods places the given tile into the position
+        for(int i = this.numberOfTiles; i>=index+1; i--){
+            Tile preTile= new Tile(this.playerTiles[i - 1].getValue());           
+            this.playerTiles[i] =preTile;
+            this.playerTiles[i].getValue();
+        }
+        this.playerTiles[index]=t;
+    }
+}
