@@ -176,7 +176,7 @@ public class SimplifiedOkeyGame {
                     discardTile(j);
                     match = true;
                     displayDiscardInformation();
-                    break;
+                    break; // !!!
                 }
             }
         }
