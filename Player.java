@@ -45,7 +45,7 @@ public class Player {
         Tile currTile;
         Tile nextTile;
         
-        for (int i = 0; i < TILES_LENGTH - 1; i++) {
+        for (int i = 0; i < this.numberOfTiles - 1; i++) {
             currTile = playerTiles[i];
             nextTile = playerTiles [i+1];
 
