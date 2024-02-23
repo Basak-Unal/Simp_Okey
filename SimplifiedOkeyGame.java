@@ -53,11 +53,10 @@ public class SimplifiedOkeyGame {
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
-    public String getLastDiscardedTile() {
-        players[currentPlayerIndex].addTile(lastDiscardedTile);
+   public String getLastDiscardedTile() {
+        players[currentPlayerIndex].addTile(lastDiscardedTile,0,players[currentPlayerIndex].numberOfTiles-1);
         return lastDiscardedTile.toString();
     }
-
     /*berra
      * TODO: get the top tile from tiles array for the current player
      * that tile is no longer in the tiles array (this simulates picking up the top tile)
@@ -66,13 +65,12 @@ public class SimplifiedOkeyGame {
      */
     public String getTopTile() {
         Tile topTile = tiles[tileCount - 1];
-        players[currentPlayerIndex].addTile(topTile);
+        players[currentPlayerIndex].addTile(topTile,0,players[currentPlayerIndex].numberOfTiles-1);
         String str = "";
         str += topTile.toString();
         tiles[tileCount -1] = null; // That tile is no longer in the tiles array ?
         return str ;
     }
-
     /*Başak
      * TODO: should randomly shuffle the tiles array before game starts
      */
