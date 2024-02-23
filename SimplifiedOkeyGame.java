@@ -148,12 +148,127 @@ public class SimplifiedOkeyGame {
       }
     }
 
-    /*
+    /*Erez
      * TODO: Current computer player will discard the least useful tile.
      * you may choose based on how useful each tile is
      */
-    public void discardTileForComputer() {
+    public void discardTileForComputer() 
+    {
+        int longestChain = players[currentPlayerIndex].findLongestChain();
+        int length = players[currentPlayerIndex].getTiles().length;
+        Tile[] playersHand = players[currentPlayerIndex].getTiles();
+        boolean match = false;
 
+        //This nested loop is an initial check that checks for duplicates and removes the duplicate tile.
+        for (int i = 0; i < length; i++)
+        {
+            Tile compared = playersHand[i];
+
+            for(int j = 0; j < length; j++)
+            {
+                Tile reference = playersHand[j];
+
+                if( (j != i) && (compared.compareTo(reference) == 0) )
+                {
+                    discardTile(j);
+                    match = true;
+                    displayDiscardInformation();
+                    break; // !!!
+                }
+            }
+        }
+
+        //If no dupplicate is found the function discards the logical tile, one that does not infringe the longest chain.
+        if(!match)
+        {
+            ArrayList<Integer> indexMemory = new ArrayList<>();
+            ArrayList<Integer> differenceMemory = new ArrayList<>();
+            
+            for (int i = 0; i < length; i++)
+            {
+                boolean radar = playersHand[i].canFormChainWith(playersHand[i+1]);
+                if (!radar)
+                {
+                    indexMemory.add(i);    
+                }
+            }
+            indexMemory.add(length -1);
+            int length2 = indexMemory.size();
+            differenceMemory.add(indexMemory.get(0));
+
+            for (int i = 1; i < length; i++)
+            {
+                int difference = indexMemory.get(i+1) - indexMemory.get(i);
+                differenceMemory.add(difference);
+            }
+
+            differenceMemory.add(length - indexMemory.get(indexMemory.size() -1) );
+            int numberOfChains = differenceMemory.size();
+
+            if (numberOfChains <= 3)
+            {
+                int minIndex = 0;
+                int min = differenceMemory.get(0);
+                int max = differenceMemory.get(0);
+                int maxIndex = 0;
+
+                for (int i = 1; i < numberOfChains; i++)
+                {
+                    int looker = differenceMemory.get(i);
+                    if (looker < min )
+                    {
+                        min = looker;
+                        minIndex = i;
+                    }
+
+                    if (looker > max)
+                    {
+                        max = looker;
+                        maxIndex = i;
+                    }
+                }
+
+                if (minIndex < maxIndex)
+                {
+                    discardTile(indexMemory.get(minIndex - differenceMemory.get(minIndex)));
+                }
+                else 
+                {
+                    discardTile(indexMemory.get(minIndex + differenceMemory.get(minIndex)));
+                }
+                
+            }
+            else 
+            {
+                int minIndex = 0;
+                int min = differenceMemory.get(0);
+                int max = differenceMemory.get(0);
+                int maxIndex = 0;
+
+                for (int i = 1; i < numberOfChains; i++)
+                {
+                    int looker = differenceMemory.get(i);
+                    if (looker < min )
+                    {
+                        min = looker;
+                        minIndex = i;
+                    }
+
+                    if (looker > max)
+                    {
+                        max = looker;
+                        maxIndex = i;
+                    }
+                }
+
+                if ()
+                {
+                    //this will be continiued.
+                }
+
+            }
+            
+        }
     }
 
     /*feyza
