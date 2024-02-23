@@ -138,14 +138,14 @@ public class SimplifiedOkeyGame {
      * by checking if it increases the longest chain length, if not get the top tile
      */
     public void pickTileForComputer() {
-    int previousLongestChainNumber=players[currentPlayerIndex].findLongestChain();
-     getLastDiscardedTile();
-      if(players[currentPlayerIndex].findLongestChain()==previousLongestChainNumber)//doesn't increase the longest chain length
-      {
-         int index=players[currentPlayerIndex].findPositionOfTile(lastDiscardedTile);
-         players[currentPlayerIndex].getAndRemoveTile(index);
-         getTopTile();
-      }
+        int previousLongestChainNumber=players[currentPlayerIndex].findLongestChain();
+        getLastDiscardedTile();
+        if(players[currentPlayerIndex].findLongestChain() == previousLongestChainNumber)//doesn't increase the longest chain length
+        {
+           int index = players[currentPlayerIndex].findPositionOfTile(lastDiscardedTile);
+           players[currentPlayerIndex].getAndRemoveTile(index);
+           getTopTile();
+        }
     }
 
     /*Erez
