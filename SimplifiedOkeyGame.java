@@ -232,11 +232,11 @@ public class SimplifiedOkeyGame {
 
                 if (minIndex < maxIndex)
                 {
-                    discardTile(indexMemory.get(minIndex - differenceMemory.get(minIndex)));
+                    discardTile(indexMemory.get(minIndex - differenceMemory.get(minIndex) + 1));
                 }
                 else 
                 {
-                    discardTile(indexMemory.get(minIndex + differenceMemory.get(minIndex)));
+                    discardTile(indexMemory.get(minIndex + differenceMemory.get(minIndex) - 1));
                 }
                 
             }
