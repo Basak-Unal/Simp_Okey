@@ -183,20 +183,20 @@ public class SimplifiedOkeyGame {
             ArrayList<Integer> differenceMemory = new ArrayList<>();
             
             // firstly the method calculates the indexes at which the chains break.
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < length - 1; i++)
             {
-                boolean radar = playersHand[i].canFormChainWith(playersHand[i+1]);
+                boolean radar = playersHand[i].canFormChainWith(playersHand[i + 1]);
                 if (!radar)
                 {
                     indexMemory.add(i);    
                 }
             }
             indexMemory.add(length -1);
-            int length2 = indexMemory.size();
+            
             differenceMemory.add(indexMemory.get(0));
 
             // From the breaks we calculate the length of each chain and save them in the array differenceMemory.
-            for (int i = 1; i < length; i++)
+            for (int i = 1; i < indexMemory.size() - 1; i++)
             {
                 int difference = indexMemory.get(i+1) - indexMemory.get(i);
                 differenceMemory.add(difference);
