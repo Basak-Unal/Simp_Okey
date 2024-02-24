@@ -162,22 +162,18 @@ public class SimplifiedOkeyGame {
         boolean match = false;
 
         //This nested loop is an initial check that checks for duplicates and removes the duplicate tile.
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < length-1; i++)
         {
             Tile compared = playersHand[i];
-
-            for(int j = 0; j < length; j++)
+            Tile consec = playersHand[i + 1];
+            if( (compared.compareTo(consec) == 0) )
             {
-                Tile reference = playersHand[j];
-
-                if( (j != i) && (compared.compareTo(reference) == 0) )
-                {
-                    discardTile(j);
-                    match = true;
-                    displayDiscardInformation();
-                    break;
-                }
+                discardTile(i);
+                match = true;
+                displayDiscardInformation();
+                break;   
             }
+            
         }
 
         //If no dupplicate is found the function discards the logical tile, one that does not infringe the longest chain.
