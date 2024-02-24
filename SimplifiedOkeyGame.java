@@ -151,9 +151,10 @@ public class SimplifiedOkeyGame {
       }
     }
 
-    /*Erez
+   /*Erez
      * TODO: Current computer player will discard the least useful tile.
      * you may choose based on how useful each tile is
+     * (Feel free to improve the method)
      */
     public void discardTileForComputer() 
     {
@@ -176,7 +177,7 @@ public class SimplifiedOkeyGame {
                     discardTile(j);
                     match = true;
                     displayDiscardInformation();
-                    break; // !!!
+                    break;
                 }
             }
         }
@@ -187,6 +188,7 @@ public class SimplifiedOkeyGame {
             ArrayList<Integer> indexMemory = new ArrayList<>();
             ArrayList<Integer> differenceMemory = new ArrayList<>();
             
+            // firstly the method calculates the indexes at which the chains break.
             for (int i = 0; i < length; i++)
             {
                 boolean radar = playersHand[i].canFormChainWith(playersHand[i+1]);
@@ -199,6 +201,7 @@ public class SimplifiedOkeyGame {
             int length2 = indexMemory.size();
             differenceMemory.add(indexMemory.get(0));
 
+            // From the breaks we calculate the length of each chain and save them in the array differenceMemory.
             for (int i = 1; i < length; i++)
             {
                 int difference = indexMemory.get(i+1) - indexMemory.get(i);
@@ -208,6 +211,8 @@ public class SimplifiedOkeyGame {
             differenceMemory.add(length - indexMemory.get(indexMemory.size() -1) );
             int numberOfChains = differenceMemory.size();
 
+            // According to data gathered we use a strategy to discard tiles.
+            // If there is 3 or less than 3 chains then the methos discards the tile form the begning or the end of that chain accordingly.
             if (numberOfChains <= 3)
             {
                 int minIndex = 0;
@@ -241,6 +246,9 @@ public class SimplifiedOkeyGame {
                 }
                 
             }
+            // If there is more chains than 3 then the method discards the tile from the chain that is less likely to win the game
+            // If the longest chain is at the end the first tile and if it is at the beginning the tile at the end is discarded.
+            // If the longest chain remains in the middle of the chains than according to the position of the chain an appropriate tile is discarded.
             else 
             {
                 int minIndex = 0;
@@ -264,10 +272,26 @@ public class SimplifiedOkeyGame {
                     }
                 }
 
-                if ()
+                if (maxIndex == length-1)
                 {
-                    //this will be continiued.
+                    discardTile(0);
                 }
+                else if(maxIndex == 0)
+                {
+                    discardTile(length -1);
+                }
+                else
+                {
+                    if (maxIndex < (length/2))
+                    {
+                        discardTile(length -1);
+                    }
+                    else
+                    {
+                        discardTile(0);
+                    }
+                } 
+                
 
             }
             
