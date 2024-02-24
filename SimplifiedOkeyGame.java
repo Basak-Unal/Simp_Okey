@@ -69,6 +69,7 @@ public class SimplifiedOkeyGame {
         String str = "";
         str += topTile.toString();
         tiles[tileCount -1] = null; // That tile is no longer in the tiles array ?
+        tileCount--;
         return str ;
     }
     /*Başak
