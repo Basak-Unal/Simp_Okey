@@ -147,13 +147,13 @@ public class ApplicationMain {
                         // use getPlayerWithHighestLongestChain method of game for this task
                         if(game.getPlayerWithHighestLongestChain().length==1)
                         {
-                            System.out.println(game.getPlayerWithHighestLongestChain()[0]+" is winner!");
+                            System.out.println(game.getPlayerWithHighestLongestChain()[0].getName()+" is winner!");
                         }
                         else
                         {
                             for(int i=0;i<game.getPlayerWithHighestLongestChain().length;i++)
                             {
-                              System.out.print(game.getPlayerWithHighestLongestChain()[i]);
+                              System.out.print(game.getPlayerWithHighestLongestChain()[i].getName());
                                if(i!=game.getPlayerWithHighestLongestChain().length-1)
                                {
                                  if(i==game.getPlayerWithHighestLongestChain().length-2)
