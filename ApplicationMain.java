@@ -140,7 +140,7 @@ public class ApplicationMain {
                         // current computer character wins
                         System.out.println(game.getCurrentPlayerName() + " wins.");
                     }
-                    else{
+                   else{
                         //feyza
                         // TODO: the game ended with no more tiles in the stack
                         // determine the winner based on longest chain lengths of the players
@@ -151,22 +151,14 @@ public class ApplicationMain {
                         }
                         else
                         {
+                            String str="";
                             for(int i=0;i<game.getPlayerWithHighestLongestChain().length;i++)
                             {
-                              System.out.print(game.getPlayerWithHighestLongestChain()[i].getName());
-                               if(i!=game.getPlayerWithHighestLongestChain().length-1)
-                               {
-                                 if(i==game.getPlayerWithHighestLongestChain().length-2)
-                                 {
-                                    System.out.print(" and ");
-                                 }
-                                 else
-                                 {
-                                    System.out.print(" , ");
-                                 }
-                               }
+                              str+=game.getPlayerWithHighestLongestChain()[i].getName()+" and";                   
                             }
-                            System.out.print(" are winners!");
+                            str=str.substring(0, str.length()-3);
+                            str+=" are winners!";
+                            System.out.print(str);
                         }
                     }
                 }
