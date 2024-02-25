@@ -233,10 +233,12 @@ public class SimplifiedOkeyGame {
                 if (minIndex < maxIndex)
                 {
                     discardTile(indexMemory.get(minIndex - differenceMemory.get(minIndex) + 1));
+                    displayDiscardInformation()
                 }
                 else 
                 {
                     discardTile(indexMemory.get(minIndex + differenceMemory.get(minIndex) - 1));
+                    displayDiscardInformation()
                 }
                 
             }
@@ -269,20 +271,24 @@ public class SimplifiedOkeyGame {
                 if (maxIndex == length-1)
                 {
                     discardTile(0);
+                    displayDiscardInformation()
                 }
                 else if(maxIndex == 0)
                 {
                     discardTile(length -1);
+                    displayDiscardInformation()
                 }
                 else
                 {
                     if (maxIndex < (length/2))
                     {
                         discardTile(length -1);
+                        displayDiscardInformation()
                     }
                     else
                     {
                         discardTile(0);
+                        displayDiscardInformation()
                     }
                 } 
                 
